@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.guilhermesartori.controlefinanceiroapp.model.Nota;
@@ -33,6 +34,10 @@ public class HomeFragment extends Fragment implements RecyclerViewNotasAdapter.N
     private TextView title;
     private TextView content;
     private RecyclerView recyclerView;
+    RecyclerViewNotasAdapter adapter;
+    private DatabaseReference mDatabase;
+    EditText titleEdit;
+    EditText contentEdit;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -49,16 +54,23 @@ public class HomeFragment extends Fragment implements RecyclerViewNotasAdapter.N
         content = inflate.findViewById(R.id.item_nota_content);
         recyclerView = inflate.findViewById(R.id.recycler_notas);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        RecyclerViewNotasAdapter adapter = new RecyclerViewNotasAdapter(getNotas(), this);
+        adapter = new RecyclerViewNotasAdapter(getNotas(), this);
         recyclerView.setAdapter(adapter);
+
+        titleEdit = inflate.findViewById(R.id.edit_nota_title);
+        contentEdit = inflate.findViewById(R.id.edit_nota_content);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Nota nota = new Nota();
-                nota.setTitle("teste 1");
-                nota.setContent("teste de conteudo");
+
+                nota.setTitle(titleEdit.getText().toString());
+                nota.setContent(contentEdit.getText().toString());
+
                 writeToDatabase(nota);
             }
         });
@@ -73,20 +85,21 @@ public class HomeFragment extends Fragment implements RecyclerViewNotasAdapter.N
     }
 
 
-    private void writeToDatabase(Nota financialTransition){
+    private void writeToDatabase(Nota nota){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference(mAuth.getUid());
 
-        myRef.setValue(financialTransition);
+        myRef.setValue(nota);
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Nota nota = dataSnapshot.getValue(Nota.class);
-                title.setText(nota.getTitle());
-                content.setText(nota.getContent());
+                adapter.addNewNota(nota);
+//                title.setText(nota.getTitle());
+//                content.setText(nota.getContent());
             }
 
             @Override

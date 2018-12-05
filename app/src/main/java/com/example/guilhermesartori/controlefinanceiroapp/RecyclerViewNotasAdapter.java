@@ -20,6 +20,11 @@ public class RecyclerViewNotasAdapter extends RecyclerView.Adapter<RecyclerViewN
         this.listener = listener;
     }
 
+    public void addNewNota(Nota nota){
+        notas.add(nota);
+        notifyDataSetChanged();
+    }
+
     public interface NotasAdapterListener{
         void addToFavs(Nota nota);
     }
