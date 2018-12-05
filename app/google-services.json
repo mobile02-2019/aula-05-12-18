@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "986704245641",
+    "firebase_url": "https://controlefinanceiroapp-a5822.firebaseio.com",
+    "project_id": "controlefinanceiroapp-a5822",
+    "storage_bucket": "controlefinanceiroapp-a5822.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:986704245641:android:927dd3cb79aef777",
+        "android_client_info": {
+          "package_name": "com.example.guilhermesartori.controlefinanceiroapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "986704245641-sje9oefl1gunipo7ksu1h7gd5a1dsn88.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.guilhermesartori.controlefinanceiroapp",
+            "certificate_hash": "e629baf67944d8c11722df55471af8f858701d2e"
+          }
+        },
+        {
+          "client_id": "986704245641-m8nm57vamtsfbvehkq6be4mk1iae5q9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGWyk54qj_aeO0rndYbfP-EwYY6RQ1Jbk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "986704245641-m8nm57vamtsfbvehkq6be4mk1iae5q9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
